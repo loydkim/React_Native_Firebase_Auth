@@ -6,8 +6,8 @@
  */
 
 import React, { useState } from 'react';
-import type {PropsWithChildren} from 'react';
 import {
+  Platform,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -20,14 +20,17 @@ import {
 
 import {
   Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
+import { appleAuth } from '@invertase/react-native-apple-authentication';
+
+GoogleSignin.configure({
+  webClientId: '323056331118-8e0ikhmqlgghukp6bsk8irjj7rdl20mc.apps.googleusercontent.com',
+});
 
 type AuthButtonProps = {
   title: string,
@@ -124,6 +127,61 @@ const Content = (props: ContentProps) => {
   }
 };
 
+async function onAppleButtonPress() {
+  // Start the sign-in request
+  const appleAuthRequestResponse = await appleAuth.performRequest({
+    requestedOperation: appleAuth.Operation.LOGIN,
+    requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+  });
+
+  // Ensure Apple returned a user identityToken
+  if (!appleAuthRequestResponse.identityToken) {
+    throw new Error('Apple Sign-In failed - no identify token returned');
+  }
+
+  // Create a Firebase credential from the response
+  const { identityToken, nonce } = appleAuthRequestResponse;
+  const appleCredential = auth.AppleAuthProvider.credential(identityToken, nonce);
+
+  // Sign the user in with the credential
+  return auth().signInWithCredential(appleCredential);
+}
+
+async function onFacebookButtonPress() {
+  // Attempt login with permissions
+  const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+
+  if (result.isCancelled) {
+    throw 'User cancelled the login process';
+  }
+
+  // Once signed in, get the users AccesToken
+  const data = await AccessToken.getCurrentAccessToken();
+
+  if (!data) {
+    throw 'Something went wrong obtaining access token';
+  }
+
+  // Create a Firebase credential with the AccessToken
+  const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
+
+  // Sign-in the user with the credential
+  return auth().signInWithCredential(facebookCredential);
+}
+
+async function onGoogleButtonPress() {
+  // Check if your device supports Google Play
+  await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+  // Get the users ID token
+  const { idToken } = await GoogleSignin.signIn();
+
+  // Create a Google credential with the token
+  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+  // Sign-in the user with the credential
+  return auth().signInWithCredential(googleCredential);
+}
+
 function App(): JSX.Element {
   const [authType, setAuthType] = useState('ready');
   const isDarkMode = useColorScheme() === 'dark';
@@ -161,7 +219,7 @@ function App(): JSX.Element {
               color="green"
               iconName="google"
               action={() => {
-                // onGoogleButtonPress().then(() => console.log('Signed in with Google!'))
+                onGoogleButtonPress().then(() => console.log('Signed in with Google!'))
               }}
             />
             <AuthButton
@@ -169,7 +227,7 @@ function App(): JSX.Element {
               color="#3b5998"
               iconName="facebook-square"
               action={() => {
-                // onFacebookButtonPress().then(() => console.log('Signed in with Facebook!'))
+                onFacebookButtonPress().then(() => console.log('Signed in with Facebook!'))
               }}
             />
             <AuthButton
@@ -177,9 +235,9 @@ function App(): JSX.Element {
               color="black"
               iconName="apple"
               action={() => {
-                // Platform.OS == 'ios' ? 
-                //   onAppleButtonPress().then(() => console.log('Apple sign-in complete!'))
-                //   : console.debug('can not sign up in android platform')
+                Platform.OS == 'ios' ? 
+                  onAppleButtonPress().then(() => console.log('Apple sign-in complete!'))
+                  : console.debug('can not sign up in android platform')
               }}
             />
         </View>

@@ -11,7 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2BCFCCE129A1A96200614F7C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BCFCCE029A1A96200614F7C /* GoogleService-Info.plist */; };
+		2B362C2E29A3E1E0009C93A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B362C2D29A3E1E0009C93A9 /* GoogleService-Info.plist */; };
 		7F96C8B3BA042A41150C0A0C /* Pods_FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B84687C3242ACBA75BBB7A30 /* Pods_FirebaseAuth.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8597FE4F749F42E74A923C7A /* Pods_FirebaseAuth_FirebaseAuthTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B059513DB30DAF2501C5B19A /* Pods_FirebaseAuth_FirebaseAuthTests.framework */; };
@@ -53,7 +53,8 @@
 		2B29328129A1AA73002BA959 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		2B29328229A1AA73002BA959 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		2B29328329A1AA73002BA959 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
-		2BCFCCE029A1A96200614F7C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B362C2D29A3E1E0009C93A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B9140AB29A544F700490A68 /* FirebaseAuth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FirebaseAuth.entitlements; path = FirebaseAuth/FirebaseAuth.entitlements; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-FirebaseAuth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseAuth.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseAuth/Pods-FirebaseAuth.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-FirebaseAuth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseAuth.release.xcconfig"; path = "Target Support Files/Pods-FirebaseAuth/Pods-FirebaseAuth.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-FirebaseAuth-FirebaseAuthTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseAuth-FirebaseAuthTests.debug.xcconfig"; path = "Target Support Files/Pods-FirebaseAuth-FirebaseAuthTests/Pods-FirebaseAuth-FirebaseAuthTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -104,10 +105,11 @@
 		13B07FAE1A68108700A75B9A /* FirebaseAuth */ = {
 			isa = PBXGroup;
 			children = (
+				2B9140AB29A544F700490A68 /* FirebaseAuth.entitlements */,
 				2B29327329A1AA73002BA959 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
-				2BCFCCE029A1A96200614F7C /* GoogleService-Info.plist */,
+				2B362C2D29A3E1E0009C93A9 /* GoogleService-Info.plist */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
@@ -289,7 +291,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				2BCFCCE129A1A96200614F7C /* GoogleService-Info.plist in Resources */,
+				2B362C2E29A3E1E0009C93A9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +548,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FirebaseAuth/FirebaseAuth.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 33BKRBW8SH;
 				ENABLE_BITCODE = NO;
@@ -574,6 +577,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FirebaseAuth/FirebaseAuth.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 33BKRBW8SH;
 				INFOPLIST_FILE = FirebaseAuth/Info.plist;

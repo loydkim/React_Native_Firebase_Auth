@@ -2,12 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>FontAwesome.ttf</string>
-	</array>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
+  
+  
+  <key>FacebookAppID</key>
+  <string>607048507958015</string>
+  <key>FacebookClientToken</key>
+  <string>749e4be84d6050b31cc635d42a6ddcdf</string>
+  <key>FacebookDisplayName</key>
+  <string>firebaseauth</string>
+  
+  
+  <key>LSApplicationQueriesSchemes</key>
+  <array>
+    <string>fbapi</string>
+    <string>fb-messenger-share-api</string>
+  </array>
+  
+  
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -26,8 +37,27 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.323056331118-k5en223fngvfu4qne5q3ul4c1n2hop52</string>
+			</array>
+		</dict>
+    <dict>
+    <key>CFBundleURLSchemes</key>
+    <array>
+      <string>fb607048507958015</string>
+    </array>
+    </dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -43,6 +73,10 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FontAwesome.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
