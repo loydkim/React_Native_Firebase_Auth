@@ -1,5 +1,9 @@
 # React_Native_Firebase_Auth
 
+If you buy me a coffee, I really appreciate it 🙇🏻‍♂️🙇🏻‍♂️🙇🏻‍♂️😀
+
+Link: https://www.buymeacoffee.com/loydkim
+
 <img src="https://github.com/loydkim/React_Native_Firebase_Auth/blob/main/short_auth1.gif" width="300" height="520">
 
 * Develop Environment.
